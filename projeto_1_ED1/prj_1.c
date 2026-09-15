@@ -1,6 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/*
+    Trabalho realizado por:
+    Pedro Artur Barberá Sarni (17918418)
+    Breno de Sousa Cad (17881714)
+    Thales Amaral Gontijo (17925010)
+    Murilo Fransciscato Ataide (17916308)
+*/
+
 // função que printa os elementos do vetor
 void exibicao(int *arr, int n)
 {

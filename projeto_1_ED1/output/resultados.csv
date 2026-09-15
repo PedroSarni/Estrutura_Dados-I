@@ -1,21 +1,21 @@
 Algoritmo,N,TempoMedio
-Inversao,1000,1155
-Busca Sequencial,1000,1031
-Busca Binaria Iterativa,1000,44
-Busca Binaria Recursiva,1000,61
-Inversao,50000,59562
-Busca Sequencial,50000,44303
-Busca Binaria Iterativa,50000,49
-Busca Binaria Recursiva,50000,74
-Inversao,100000,111547
-Busca Sequencial,100000,91353
-Busca Binaria Iterativa,100000,64
-Busca Binaria Recursiva,100000,98
-Inversao,500000,554970
-Busca Sequencial,500000,416991
-Busca Binaria Iterativa,500000,57
-Busca Binaria Recursiva,500000,86
-Inversao,1000000,1114404
-Busca Sequencial,1000000,836801
-Busca Binaria Iterativa,1000000,54
-Busca Binaria Recursiva,1000000,98
+Inversao,1000,2984
+Busca Sequencial,1000,2775
+Busca Binaria Iterativa,1000,112
+Busca Binaria Recursiva,1000,155
+Inversao,50000,168230
+Busca Sequencial,50000,138869
+Busca Binaria Iterativa,50000,151
+Busca Binaria Recursiva,50000,324
+Inversao,100000,347791
+Busca Sequencial,100000,272023
+Busca Binaria Iterativa,100000,159
+Busca Binaria Recursiva,100000,251
+Inversao,500000,1679389
+Busca Sequencial,500000,1331487
+Busca Binaria Iterativa,500000,171
+Busca Binaria Recursiva,500000,273
+Inversao,1000000,3247534
+Busca Sequencial,1000000,2687164
+Busca Binaria Iterativa,1000000,184
+Busca Binaria Recursiva,1000000,561

@@ -5,6 +5,15 @@
 #define EXECUCOES 100
 #define QUANTIDADE_N 5
 
+/*
+    Trabalho realizado por:
+    Pedro Artur Barberá Sarni (17918418)
+    Breno de Sousa Cad (17881714)
+    Thales Amaral Gontijo (17925010)
+    Murilo Fransciscato Ataide (17916308)
+*/
+
+
 // Função 1: Inversão da ordem do vetor
 void inverter_arr(int arr[], int n)
 {
@@ -174,6 +183,13 @@ int main()
 
             soma += calcular_tempo(inicio, fim);
         }
+
+        //ordena o vetor novamente para realizar os proximos algoritmos
+        for (int j = 0; j < N; j++)
+            {
+                vetor[j] = j;
+            }
+
 
         long long tempo_medio = soma / EXECUCOES;
 
