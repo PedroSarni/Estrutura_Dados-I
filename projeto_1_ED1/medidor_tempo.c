@@ -12,23 +12,39 @@
     Thales Amaral Gontijo (17925010)
     Murilo Fransciscato Ataide (17916308)
 */
-
+//
+long long count_atribuicoes = 0;
+long long count_comparacoes = 0;
 
 // Função 1: Inversão da ordem do vetor
 void inverter_arr(int arr[], int n)
 {
+    //definindo o inicio do array
     int l = 0;
+    count_atribuicoes++;
+    //definindo o final
     int r = n - 1;
+    count_atribuicoes++;
+    //criando uma variavel temporária
     int temp;
-
-    while (l < r)
+    //enquanto o começo do array for menor que o final (isso garante que todo o vetor estará invertido)
+    while (l < r) count_comparacoes++; 
     {
+    
+        //guarda o valor do começo do array na variável temporária
         temp = arr[l];
+        count_atribuicoes++;
+        //atribui o final do array no começo
         arr[l] = arr[r];
+        count_atribuicoes++;
+        // atribui o inicio ao final (via variavel temporaria).
         arr[r] = temp;
+        count_atribuicoes++;
 
         l++;
+        count_atribuicoes++;
         r--;
+        count_atribuicoes++;
     }
 }
 
@@ -38,10 +54,13 @@ void busca_sequencial(int arr[], int n, int target)
 {
     for (int i = 0; i < n; i++)
     {
+        //compara se o elemento atual do vetor é igual ao desejado.
         if (arr[i] == target)
         {
+            //se for, encerra o loop e retorna a função.
             return;
         }
+    // se não, incrementa o i e verifica o elemento da próxima posição.
     }
 }
 
@@ -49,22 +68,30 @@ void busca_sequencial(int arr[], int n, int target)
 // Função 3: Busca binária iterativa
 void bin_int(int arr[], int l, int r, int target)
 {
+    //enquanto o começo do array for menor que o final
     while (l <= r)
     {
+        //define o meio do vetor, para separá-lo em 2.
         int meio = l + (r - l) / 2;
-
+        //verifica se o valor desejado está no meio.
         if (arr[meio] == target)
         {
+            //se sim, retorna a função e encerra o loop.
             return;
         }
-
+        //se o valor do meio for menor que o número desejado, o que nos interssa é a
+        //metade da direita do vetor (considerando que ele está ordenado de forma crescente).
         if (arr[meio] < target)
         {
+            //por isso o começo do vetor agora está à direita do meio, pois nos interessa
+            //só a metade da direita. 
             l = meio + 1;
         }
-
+        //mesma coisa da parte de cima, porém, no caso onde o valor desejado é menor que
+        // o valor que está no meio, então, nos interessa o vetor à esquerda do meio.
         if (arr[meio] > target)
         {
+            //definindo o final do vetor como o número à esquerda do meio.
             r = meio - 1;
         }
     }
@@ -74,25 +101,32 @@ void bin_int(int arr[], int l, int r, int target)
 // Função 4: Busca binária recursiva
 void bin_rec(int arr[], int l, int r, int target)
 {
+    //enquanto o começo do array for menor que o final.
     if (l > r)
     {
         return;
     }
-
+    //definindo o meio assim como na busca binária interativa.
     int meio = l + (r - l) / 2;
-
+    //verifica se o valor desejado está no meio.
     if (arr[meio] == target)
     {
         return;
     }
-
+    //se o valor do meio for menor que o número desejado, o que nos interssa é a
+    //metade da direita do vetor (considerando que ele está ordenado de forma crescente).
     if (arr[meio] < target)
     {
+        // com isso, chamamos a própria função recursivamente definindo o começo do array como 
+        // meio + 1 (logo a direita do meio)
         bin_rec(arr, meio + 1, r, target);
     }
-
+    //mesma coisa da parte de cima, porém, no caso onde o valor desejado é menor que
+    // o valor que está no meio, então, nos interessa o vetor à esquerda do meio.
     if (arr[meio] > target)
     {
+        //chamamos recursivamente a função, só que agora definindo o final da função
+        //como meio-1 (logo a esquerda do meio). 
         bin_rec(arr, l, meio - 1, target);
     }
 }
@@ -136,7 +170,7 @@ int main()
     }
 
     // Cabeçalho do CSV
-    fprintf(arquivo, "Algoritmo,N,TempoMedio\n");
+    fprintf(arquivo, "Algoritmo,N,TempoMedio,Atribuicoes,Comparacoes\n");
 
 
     for (int t = 0; t < QUANTIDADE_N; t++)
@@ -183,7 +217,6 @@ int main()
 
             soma += calcular_tempo(inicio, fim);
         }
-
         //ordena o vetor novamente para realizar os proximos algoritmos
         for (int j = 0; j < N; j++)
             {
@@ -200,7 +233,7 @@ int main()
         printf("Tempo decorrido: %ld.%09ld segundos\n\n",
                segundos_medio, nanosegundos_medio);
 
-        fprintf(arquivo, "Inversao,%d,%lld\n", N, tempo_medio);
+        fprintf(arquivo, "Inversao,%d,%lld,%lld,%lld\n", N, tempo_medio,count_atribuicoes,count_comparacoes);
 
 
         /*
