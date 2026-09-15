@@ -65,6 +65,7 @@ void busca_sequencial(int arr[], int n, int target)
             return;
         }
     // se não, incrementa o i e verifica o elemento da próxima posição.
+    count_atribuicoes++;
     }
 }
 
@@ -262,8 +263,8 @@ int main()
          */
 
         //resetando as atribuições e comparações para contar na busca sequencial.
-        long long count_atribuicoes = 0;
-        long long count_comparacoes = 0;
+        count_atribuicoes = 0;
+        count_comparacoes = 0;
 
         soma = 0;
 
@@ -290,7 +291,7 @@ int main()
         printf("Tempo decorrido: %ld.%09ld segundos\n\n",
                segundos_medio, nanosegundos_medio);
 
-        fprintf(arquivo, "Busca Sequencial,%d,%lld\n", N, tempo_medio);
+        fprintf(arquivo, "Busca Sequencial,%d,%lld,%lld,%lld\n", N, tempo_medio,count_atribuicoes,count_comparacoes);
 
 
         /*
@@ -301,8 +302,8 @@ int main()
 
         soma = 0;
         //resetando as atribuições e comparações para contar na busca binaria interativa.
-        long long count_atribuicoes = 0;
-        long long count_comparacoes = 0;
+        count_atribuicoes = 0;
+        count_comparacoes = 0;
         // Pior caso: elemento não está no vetor
         target = -1;
 
@@ -326,7 +327,7 @@ int main()
         printf("Tempo decorrido: %ld.%09ld segundos\n\n",
                segundos_medio, nanosegundos_medio);
 
-        fprintf(arquivo, "Busca Binaria Iterativa,%d,%lld\n", N, tempo_medio);
+        fprintf(arquivo, "Busca Binaria Iterativa,%d,%lld,%lld,%lld\n", N, tempo_medio,count_atribuicoes,count_comparacoes);
 
 
         /*
@@ -338,8 +339,8 @@ int main()
         soma = 0;
 
          //resetando as atribuições e comparações para contar na busca binária recursiva.
-        long long count_atribuicoes = 0;
-        long long count_comparacoes = 0;
+        count_atribuicoes = 0;
+        count_comparacoes = 0;
 
         target = -1;
 
@@ -363,14 +364,14 @@ int main()
         printf("Tempo decorrido: %ld.%09ld segundos\n\n",
                segundos_medio, nanosegundos_medio);
 
-        fprintf(arquivo, "Busca Binaria Recursiva,%d,%lld\n", N, tempo_medio);
+        fprintf(arquivo, "Busca Binaria Recursiva,%d,%lld,%lld,%lld\n", N, tempo_medio,count_atribuicoes,count_comparacoes);
 
 
         free(vetor);
         //resetando as atribuicoes e comparações para começarmos um novo
         //caso de teste nas funções implementadas.
-        long long count_atribuicoes = 0;
-        long long count_comparacoes = 0;
+        count_atribuicoes = 0;
+        count_comparacoes = 0;
     }
     fclose(arquivo);
 
