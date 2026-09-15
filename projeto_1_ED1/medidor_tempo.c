@@ -12,7 +12,7 @@
     Thales Amaral Gontijo (17925010)
     Murilo Fransciscato Ataide (17916308)
 */
-//
+//definindo variaveis globais para contagem de atribuições e comparações
 long long count_atribuicoes = 0;
 long long count_comparacoes = 0;
 
@@ -27,10 +27,13 @@ void inverter_arr(int arr[], int n)
     count_atribuicoes++;
     //criando uma variavel temporária
     int temp;
+
     //enquanto o começo do array for menor que o final (isso garante que todo o vetor estará invertido)
-    while (l < r) count_comparacoes++; 
+    // count comparações está dentro do while porque ele trata todos os casos em que ocorre a comparação,
+    //até quando ela não é verdadeira.
+
+    while (count_comparacoes++, l < r)  
     {
-    
         //guarda o valor do começo do array na variável temporária
         temp = arr[l];
         count_atribuicoes++;
@@ -52,9 +55,10 @@ void inverter_arr(int arr[], int n)
 // Função 2: Busca sequencial
 void busca_sequencial(int arr[], int n, int target)
 {
-    for (int i = 0; i < n; i++)
+    for (int i = 0;(count_comparacoes++, i < n); i++)
     {
         //compara se o elemento atual do vetor é igual ao desejado.
+        count_comparacoes++;
         if (arr[i] == target)
         {
             //se for, encerra o loop e retorna a função.
@@ -69,11 +73,13 @@ void busca_sequencial(int arr[], int n, int target)
 void bin_int(int arr[], int l, int r, int target)
 {
     //enquanto o começo do array for menor que o final
-    while (l <= r)
+    while (count_comparacoes++,l <= r)
     {
         //define o meio do vetor, para separá-lo em 2.
         int meio = l + (r - l) / 2;
+        count_atribuicoes++;
         //verifica se o valor desejado está no meio.
+        count_comparacoes++;
         if (arr[meio] == target)
         {
             //se sim, retorna a função e encerra o loop.
@@ -81,18 +87,22 @@ void bin_int(int arr[], int l, int r, int target)
         }
         //se o valor do meio for menor que o número desejado, o que nos interssa é a
         //metade da direita do vetor (considerando que ele está ordenado de forma crescente).
+        count_comparacoes++;
         if (arr[meio] < target)
         {
             //por isso o começo do vetor agora está à direita do meio, pois nos interessa
             //só a metade da direita. 
             l = meio + 1;
+            count_atribuicoes++;
         }
         //mesma coisa da parte de cima, porém, no caso onde o valor desejado é menor que
         // o valor que está no meio, então, nos interessa o vetor à esquerda do meio.
+        count_comparacoes++;
         if (arr[meio] > target)
         {
             //definindo o final do vetor como o número à esquerda do meio.
             r = meio - 1;
+            count_atribuicoes++;
         }
     }
 }
@@ -102,19 +112,23 @@ void bin_int(int arr[], int l, int r, int target)
 void bin_rec(int arr[], int l, int r, int target)
 {
     //enquanto o começo do array for menor que o final.
+    count_comparacoes++;
     if (l > r)
     {
         return;
     }
     //definindo o meio assim como na busca binária interativa.
     int meio = l + (r - l) / 2;
+    count_atribuicoes++;
     //verifica se o valor desejado está no meio.
+    count_comparacoes++;
     if (arr[meio] == target)
     {
         return;
     }
     //se o valor do meio for menor que o número desejado, o que nos interssa é a
     //metade da direita do vetor (considerando que ele está ordenado de forma crescente).
+    count_comparacoes++;
     if (arr[meio] < target)
     {
         // com isso, chamamos a própria função recursivamente definindo o começo do array como 
@@ -123,6 +137,7 @@ void bin_rec(int arr[], int l, int r, int target)
     }
     //mesma coisa da parte de cima, porém, no caso onde o valor desejado é menor que
     // o valor que está no meio, então, nos interessa o vetor à esquerda do meio.
+    count_comparacoes++;
     if (arr[meio] > target)
     {
         //chamamos recursivamente a função, só que agora definindo o final da função
@@ -135,6 +150,7 @@ void bin_rec(int arr[], int l, int r, int target)
 // Calcula o tempo decorrido em nanossegundos
 long long calcular_tempo(struct timespec inicio, struct timespec fim)
 {
+    //definindo a diferença entre o tempo final e o tempo inicial em segundos e nanosegundos
     long segundos = fim.tv_sec - inicio.tv_sec;
     long nanosegundos = fim.tv_nsec - inicio.tv_nsec;
 
@@ -143,13 +159,14 @@ long long calcular_tempo(struct timespec inicio, struct timespec fim)
         segundos -= 1;
         nanosegundos += 1000000000;
     }
-
+    // retornando o tempo total em nanossegundos (segundos * 1 bilhão + nanosegundos);
     return (long long)segundos * 1000000000LL + nanosegundos;
 }
 
 
 int main()
 {
+    
     int tamanhos[QUANTIDADE_N] = {
         1000,
         50000,
@@ -173,7 +190,7 @@ int main()
     fprintf(arquivo, "Algoritmo,N,TempoMedio,Atribuicoes,Comparacoes\n");
 
 
-    for (int t = 0; t < QUANTIDADE_N; t++)
+    for (int t = 0; t < QUANTIDADE_N; t++)  
     {
         int N = tamanhos[t];
 
@@ -217,6 +234,8 @@ int main()
 
             soma += calcular_tempo(inicio, fim);
         }
+
+
         //ordena o vetor novamente para realizar os proximos algoritmos
         for (int j = 0; j < N; j++)
             {
@@ -241,6 +260,10 @@ int main()
          * 2 - BUSCA SEQUENCIAL
          * =====================================================
          */
+
+        //resetando as atribuições e comparações para contar na busca sequencial.
+        long long count_atribuicoes = 0;
+        long long count_comparacoes = 0;
 
         soma = 0;
 
@@ -277,7 +300,9 @@ int main()
          */
 
         soma = 0;
-
+        //resetando as atribuições e comparações para contar na busca binaria interativa.
+        long long count_atribuicoes = 0;
+        long long count_comparacoes = 0;
         // Pior caso: elemento não está no vetor
         target = -1;
 
@@ -312,6 +337,10 @@ int main()
 
         soma = 0;
 
+         //resetando as atribuições e comparações para contar na busca binária recursiva.
+        long long count_atribuicoes = 0;
+        long long count_comparacoes = 0;
+
         target = -1;
 
         for (int i = 0; i < EXECUCOES; i++)
@@ -338,8 +367,11 @@ int main()
 
 
         free(vetor);
+        //resetando as atribuicoes e comparações para começarmos um novo
+        //caso de teste nas funções implementadas.
+        long long count_atribuicoes = 0;
+        long long count_comparacoes = 0;
     }
-
     fclose(arquivo);
 
     printf("Resultados salvos em resultados.csv\n");
