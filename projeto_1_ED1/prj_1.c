@@ -6,7 +6,7 @@
     Pedro Artur Barberá Sarni (17918418)
     Breno de Sousa Cad (17881714)
     Thales Amaral Gontijo (17925010)
-    Murilo Fransciscato Ataide (17916308)
+    Murilo Franciscato Ataide (17916308)
 */
 
 // função que printa os elementos do vetor

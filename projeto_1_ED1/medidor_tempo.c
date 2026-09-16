@@ -10,8 +10,9 @@
     Pedro Artur Barberá Sarni (17918418)
     Breno de Sousa Cad (17881714)
     Thales Amaral Gontijo (17925010)
-    Murilo Fransciscato Ataide (17916308)
+    Murilo Franciscato Ataide (17916308)
 */
+
 //definindo variaveis globais para contagem de atribuições e comparações
 long long count_atribuicoes = 0;
 long long count_comparacoes = 0;
@@ -304,8 +305,8 @@ int main()
         //resetando as atribuições e comparações para contar na busca binaria interativa.
         count_atribuicoes = 0;
         count_comparacoes = 0;
-        // Pior caso: elemento não está no vetor
-        target = -1;
+        // Pior caso: elemento mais a direita
+        target = N;
 
         for (int i = 0; i < EXECUCOES; i++)
         {
@@ -342,7 +343,7 @@ int main()
         count_atribuicoes = 0;
         count_comparacoes = 0;
 
-        target = -1;
+        target = N;
 
         for (int i = 0; i < EXECUCOES; i++)
         {

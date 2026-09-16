@@ -2,6 +2,14 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import os
 
+"""
+Trabalho realizado por:
+    Pedro Artur Barberá Sarni (17918418)
+    Breno de Sousa Cad (17881714)
+    Thales Amaral Gontijo (17925010)
+    Murilo Franciscato Ataide (17916308)
+"""
+
 # --- CONFIGURAÇÕES ---
 ARQUIVO_CSV = "resultados.csv"
 PASTA_GRAFICOS = "graficos"
