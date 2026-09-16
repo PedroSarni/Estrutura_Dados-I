@@ -20,9 +20,9 @@ nomes_graficos = {
     "Busca Binaria Iterativa": "Busca Binária Iterativa"
 }
 
+dados = pd.read_csv(ARQUIVO_CSV) #Lê os dados do resultados.csv
 # --- GRÁFICOS ---
 def plotar_graficos():
-    dados = pd.read_csv(ARQUIVO_CSV) #Lê os dados do resultados.csv
 
     os.makedirs(PASTA_GRAFICOS, exist_ok=True) #Cria a pasta para os gráficos caso ela não exista
 
@@ -70,6 +70,74 @@ def plotar_graficos():
 
         print(f"Gráfico salvo como '{caminho}'")
 
+def plotar_grafico_geral(criterio, titulo, ylabel): #Gera um gráfico comparando os quatro algoritmos para um critério (atribuições ou comparações).
+
+    plt.figure(figsize=(14, 7))
+
+    for algoritmo in dados["Algoritmo"].unique():
+
+        dados_algoritmo = dados[dados["Algoritmo"] == algoritmo]
+
+        if criterio == "Comparacoes" and algoritmo == "Busca Binaria Recursiva":
+            plt.plot(
+            dados_algoritmo["N"],
+            dados_algoritmo[criterio],
+            marker="o",
+            linestyle=":",
+            color=cores[algoritmo],
+            label=nomes_graficos[algoritmo]
+        )
+
+        else:
+            plt.plot(
+            dados_algoritmo["N"],
+            dados_algoritmo[criterio],
+            marker="o",
+            linestyle="-",
+            color=cores[algoritmo],
+            label=nomes_graficos[algoritmo]
+            )
+
+    plt.title(titulo)
+    plt.xlabel("Tamanho do vetor (N)")
+    plt.ylabel(ylabel)
+
+    plt.xticks(dados["N"].unique())
+    plt.ticklabel_format(style="plain", axis="x")
+
+    plt.yscale("log")
+
+    # Linhas somente nos valores principais
+    plt.grid(True, which="major", axis="both", linestyle="--")
+
+    plt.legend()
+    plt.tight_layout()
+
+    nome_arquivo = f"grafico_comparativo_{criterio}.png"
+    caminho = os.path.join(PASTA_GRAFICOS, nome_arquivo)
+
+    plt.savefig(caminho)
+    plt.show()
+
+    print(f"Gráfico salvo como '{caminho}'")
 
 if __name__ == "__main__":
     plotar_graficos()
+
+    plotar_grafico_geral(
+    "TempoMedio",
+    "Comparação dos Tempos de Execução",
+    "Tempo médio (nanosegundos)"
+    )
+
+    plotar_grafico_geral(
+        "Atribuicoes",
+        "Comparação do total de Atribuições",
+        "Quantidade de atribuições"
+    )
+
+    plotar_grafico_geral(
+        "Comparacoes",
+        "Comparação do total de Comparações",
+        "Quantidade de comparações"
+    )
