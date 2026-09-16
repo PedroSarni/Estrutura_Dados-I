@@ -1,15 +1,15 @@
-# Projeto 1 — Estruturas de Dados I
+# 📊Projeto 1 — Estruturas de Dados I 
 
 Implementação, em C, de operações sobre vetores inteiros e de uma análise experimental de desempenho. O projeto contempla inversão de vetor, busca sequencial e busca binária nas versões iterativa e recursiva.
 
-## Integrantes
+## ✍️Integrantes
 
 - Pedro Artur Barberá Sarni — 17918418
 - Breno de Sousa Cad — 17881714
 - Thales Amaral Gontijo — 17925010
 - Murilo Fransciscato Ataide — 17916308
 
-## Funcionalidades
+## ✨Funcionalidades
 
 O programa principal (`prj_1.c`) lê um vetor e aceita as seguintes opções até receber `5`:
 
@@ -59,7 +59,7 @@ NAO
 9 7 5 3 1
 ```
 
-## Análise de desempenho
+## 📈Análise de desempenho
 
 O arquivo `medidor_tempo.c` executa cada algoritmo 100 vezes para vetores de tamanhos `1000`, `50000`, `100000`, `500000` e `1000000`. Ele mede o tempo médio em nanossegundos e contabiliza atribuições e comparações.
 
@@ -73,7 +73,7 @@ cd output
 
 Nas implementações de busca, os testes do medidor usam o pior caso: o valor buscado não pertence ao vetor.
 
-## Gráficos
+## 📊Gráficos
 
 O script `output/graficos.py` lê `resultados.csv` e salva gráficos PNG em `output/graficos/`.
 
@@ -91,7 +91,7 @@ python3 graficos.py
 
 Os arquivos gerados incluem gráficos individuais de tempo para cada algoritmo e gráficos comparativos de tempo médio, atribuições e comparações.
 
-## Estrutura
+## 🛠️Estrutura
 
 ```text
 projeto_1_ED1/
