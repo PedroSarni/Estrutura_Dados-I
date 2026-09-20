@@ -29,6 +29,9 @@ nomes_graficos = {
 }
 
 dados = pd.read_csv(ARQUIVO_CSV) #Lê os dados do resultados.csv
+
+dados["Ambos"] = dados["Atribuicoes"] + dados["Comparacoes"] #Cria uma coluna para a soma das atribuições e comparações (será criado um gráfico com isso)
+
 # --- GRÁFICOS ---
 def plotar_graficos():
 
@@ -86,7 +89,17 @@ def plotar_grafico_geral(criterio, titulo, ylabel): #Gera um gráfico comparando
 
         dados_algoritmo = dados[dados["Algoritmo"] == algoritmo]
 
-        if criterio == "Comparacoes" and algoritmo == "Busca Binaria Recursiva":
+        if criterio == "Comparacoes" and algoritmo == "Busca Binaria Recursiva": #Evita sobreposição
+            plt.plot(
+            dados_algoritmo["N"],
+            dados_algoritmo[criterio],
+            marker="o",
+            linestyle=":",
+            color=cores[algoritmo],
+            label=nomes_graficos[algoritmo]
+        )
+
+        elif criterio == "Ambos" and algoritmo == "Busca Sequencial": #Evita sobreposição
             plt.plot(
             dados_algoritmo["N"],
             dados_algoritmo[criterio],
@@ -121,6 +134,8 @@ def plotar_grafico_geral(criterio, titulo, ylabel): #Gera um gráfico comparando
     plt.legend()
     plt.tight_layout()
 
+# --- GERAÇÃO DO ARQUIVO ---
+
     nome_arquivo = f"grafico_comparativo_{criterio}.png"
     caminho = os.path.join(PASTA_GRAFICOS, nome_arquivo)
 
@@ -128,6 +143,9 @@ def plotar_grafico_geral(criterio, titulo, ylabel): #Gera um gráfico comparando
     plt.show()
 
     print(f"Gráfico salvo como '{caminho}'")
+
+
+# --- CHAMADA DA FUNÇÃO PARA ATRIBUIÇÕES, COMPARAÇÕES E AMBOS
 
 if __name__ == "__main__":
     plotar_graficos()
@@ -148,4 +166,10 @@ if __name__ == "__main__":
         "Comparacoes",
         "Comparação do total de Comparações",
         "Quantidade de comparações"
+    )
+
+    plotar_grafico_geral(
+        "Ambos",
+        "Comparação do total de Atribuições e Comparações somadas",
+        "Quantidade de Atribuições + Comparações"
     )

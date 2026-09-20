@@ -305,8 +305,8 @@ int main()
         //resetando as atribuições e comparações para contar na busca binaria interativa.
         count_atribuicoes = 0;
         count_comparacoes = 0;
-        // Pior caso: elemento mais a direita
-        target = N;
+        // Pior caso: elemento não está no vetor
+        target = -1;
 
         for (int i = 0; i < EXECUCOES; i++)
         {
@@ -343,7 +343,7 @@ int main()
         count_atribuicoes = 0;
         count_comparacoes = 0;
 
-        target = N;
+        target = -1;
 
         for (int i = 0; i < EXECUCOES; i++)
         {
