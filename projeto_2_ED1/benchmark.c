@@ -10,6 +10,12 @@
 /*
  * TRABALHO 2 - COMPARACAO DE LISTAS COM CURSOR
  *
+ * Trabalho realizado por:
+ *   Pedro Artur Barberá Sarni (17918418)
+ *   Breno de Sousa Cad (17881714)
+ *   Thales Amaral Gontijo (17925010)
+ *   Murilo Franciscato Ataide (17916308)
+ * 
  * O mesmo benchmark deve ser compilado SEPARADAMENTE com:
  *   - lista_sequencial.c
  *   - lista_encadeada.c

@@ -2,14 +2,20 @@
 #include <stdlib.h>
 #include "ListaComCursor.h"
 
-//Estrutura que representa cada nó da lista duplamente encadeada
+
+/*
+Trabalho realizado por:
+    Pedro Artur Barberá Sarni (17918418)
+    Breno de Sousa Cad (17881714)
+    Thales Amaral Gontijo (17925010)
+    Murilo Franciscato Ataide (17916308)
+*/
 typedef struct node {
     int data;
     struct node *next;
     struct node *previous;
 } Node;
 
-//Estrutura que armazena as informações da lista e o cursor atual
 struct lista_cursor {
     int qtd;
     Node *head;
@@ -17,7 +23,6 @@ struct lista_cursor {
     Node *tail;
 };
 
-//Função para criar e inicializar uma lista vazia
 ListaCursor *criar_lista(void) {
     //Aloca o espaço necessário para a estrutura da lista
     ListaCursor *p = malloc(sizeof(ListaCursor));

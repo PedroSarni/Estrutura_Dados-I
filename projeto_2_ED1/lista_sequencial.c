@@ -1,6 +1,15 @@
 #include "stdlib.h"
 #include "ListaComCursor.h"
 
+
+/*
+Trabalho realizado por:
+    Pedro Artur Barberá Sarni (17918418)
+    Breno de Sousa Cad (17881714)
+    Thales Amaral Gontijo (17925010)
+    Murilo Franciscato Ataide (17916308)
+*/
+
 struct lista_cursor{
     int *dados; //iremos fazer malloc depois
     int qtd;
